@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --a-square: 1.5rem;
+  --qsq: calc(var(--a-square) / 4);
+  --a-line: calc(var(--a-square) / 32);
+
+  --logo-width: calc(2 * var(--a-square));
+  --logomark-ex: 2.25ex;
+  --slash-point: calc(var(--logo-width) + 9 * var(--logomark-ex));
+}
+
+body {
+  background: rgb(41 37 36);
+
+  --r: rgba(255, 0, 000, 0.07);
+  --g: rgba(034, 197, 094, 0.08);
+  --b: rgba(000, 194, 255, 0.04);
+
+  background-image: repeating-linear-gradient(
+      90deg,
+      transparent 0 calc(2 * var(--a-line)),
+      var(--b) calc(2 * var(--a-line)) calc(3 * var(--a-line)),
+      var(--g) calc(4 * var(--a-line)) calc(5 * var(--a-line)),
+      transparent calc(5 * var(--a-line)) calc(6 * var(--a-line)),
+      var(--r) calc(7 * var(--a-line)) calc(8 * var(--a-line)),
+      transparent calc(8 * var(--a-line)) 100%
+    ),
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 var(--a-line),
+      rgba(255, 000, 000, 0.08) calc(2 * var(--a-line)) calc(3 * var(--a-line)),
+      rgba(034, 197, 094, 0.07) calc(3 * var(--a-line)) calc(4 * var(--a-line)),
+      rgba(000, 194, 255, 0.1) calc(5 * var(--a-line)) calc(6 * var(--a-line)),
+      transparent calc(6.5 * var(--a-line)) 100%
+    );
+
+  background-size: var(--a-square) var(--a-square);
+}
+
+header {
+  height: calc(2 * var(--a-square) + var(--a-line));
+}
+
+#logo {
+  width: var(--logo-width);
+
+  filter: drop-shadow(1.5px 0px 2px rgba(251, 39, 12, 0.72))
+    drop-shadow(0.5px -0.3px 0.25px rgba(254, 178, 22, 0.69))
+    drop-shadow(
+      calc(-1 * (var(--qsq))) calc(var(--qsq) + var(--a-line)) calc(var(--qsq))
+        rgba(254, 8, 19, 0.41)
+    )
+    drop-shadow(
+      calc(-2.5 * (var(--qsq))) calc(var(--qsq) - 0.5 * var(--a-line)) calc(var(--qsq) / 2)
+        rgba(255, 37, 184, 0.28)
+    );
+  rotate: -8deg;
+}
+
+.logomark .dot {
+  @apply text-2xl font-bold;
+}
+.logomark {
+  @apply font-mono text-4xl box-content;
+
+  margin-right: calc(-1 * var(--qsq));
+
+  background: linear-gradient(
+    84deg,
+    #fe24b7 calc(0.5 * var(--qsq)),
+    #f80513 calc(1.2 * var(--qsq)),
+    #fe5700 calc(4 * var(--qsq)),
+    #fdcd1c calc(7 * var(--qsq)),
+    #21dd16 calc(9.6 * var(--qsq)),
+    #14f4fd calc(13 * var(--qsq)),
+    #0f8ceb calc(18 * var(--qsq)),
+    #bb40bc calc(24 * var(--qsq)),
+    #fe24b7 calc(29 * var(--qsq))
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  text-align: right;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#blinky-cursor {
+  @apply text-4xl;
+
+  line-height: 0.8;
+
+  filter: drop-shadow(1px 0px 5px #444) drop-shadow(-1px 0px 2px #444) blur(0.5px);
+
+  background: linear-gradient(
+    to bottom,
+    #f80513 0 29%,
+    transparent 30% 32%,
+    #fe5700 33% 41%,
+    transparent 42% 44%,
+    #fdcd1c 45% 53%,
+    transparent 54% 56%,
+    #21dd16 57% 64%,
+    transparent 65% 67%,
+    #0f8ceb 68% 77%,
+    transparent 78% 80%,
+    #bb40bc 81% 100%
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  animation: blink 3s ease-out infinite;
+}
+
+.nav-btn {
+  box-sizing: content-box;
+  padding-top: calc(var(--qsq) - 3 * var(--a-line));
+  height: calc(1.25 * var(--a-square));
+  filter: drop-shadow(0.5px 0.5px 0.5px #666);
+}
+
+hr.ainbow {
+  height: calc(2 * var(--a-line));
+  border-top: none;
+
+  --post-slash-step: calc((100vw - var(--slash-point)) / 9);
+  background: linear-gradient(
+    77deg,
+    #a14bc3 0,
+    #fe24b7 calc(4 * var(--qsq)),
+    #f80513 calc(6 * var(--qsq)),
+    #fe5700 calc(10 * var(--qsq)),
+    #fdcd1c calc(15 * var(--qsq)),
+    #21dd16 calc(20 * var(--qsq)),
+    #14f4fd calc(24 * var(--qsq)),
+    #0f8ceb calc(27 * var(--qsq)),
+    #a14bc3 calc(31 * var(--qsq)),
+    #fe23b6 var(--slash-point),
+    #bb40bc calc(var(--slash-point) + 0.5 * var(--post-slash-step)),
+    #0f8ceb calc(var(--slash-point) + 3 * var(--post-slash-step)),
+    #14f4fd calc(var(--slash-point) + 4.1 * var(--post-slash-step)),
+    #21dd16 calc(var(--slash-point) + 5 * var(--post-slash-step)),
+    #fdcd1c calc(var(--slash-point) + 6 * var(--post-slash-step)),
+    #fe5700 calc(var(--slash-point) + 7 * var(--post-slash-step)),
+    #f80513 calc(var(--slash-point) + 8.5 * var(--post-slash-step)),
+    #fe24b7 calc(var(--slash-point) + 9 * var(--post-slash-step))
+  );
+}
