@@ -1,74 +1,73 @@
 ---
 export interface Props {
-	title?: string;
+  title?: string;
 }
 
 const { title } = Astro.props as Props;
 
-import Header from "../components/Header.astro"
+import Header from "../components/Header.astro";
 ---
 
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>dbgmode{title ? `/${title}` : ""}</title>
+    <style>
+      :root {
+        /** One background square */
+        --bgsq: 1.5rem;
+        /** One background line */
+        --bgl: calc(var(--bgsq) / 32);
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width" />
-	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-	<title>dbgmode{title ? `/${title}` : ""}</title>
-</head>
+        --logo-width: 2--bgsq;
+        --logomark-rem: 2.25;
+        --logomark-ex: calc(var(--logomark-rem) * 1ex);
+        --slash-point: calc(var(--logo-width) + 9 * var(--logomark-ex));
+        --slash-point: 8.5--bgsq;
+      }
 
-<body>
-	<Header slug={title} />
-	<slot />
-</body>
+      body {
+        background: rgb(41 37 36);
 
+        --r: rgba(255, 0, 0, 0.071);
+        --r2: rgba(255, 000, 000, 0.08);
+        --g: rgba(034, 197, 094, 0.08);
+        --g2: rgba(034, 197, 094, 0.07);
+        --b: rgba(000, 194, 255, 0.04);
+        --b2: rgba(000, 194, 255, 0.1);
+
+        background-image: repeating-linear-gradient(
+            90deg,
+            transparent 0 2--bgl,
+            var(--b) 2--bgl 3--bgl,
+            var(--g) 4--bgl 5--bgl,
+            transparent 5--bgl 6--bgl,
+            var(--r) 7--bgl 8--bgl,
+            transparent 8--bgl 100%
+          ),
+          repeating-linear-gradient(
+            180deg,
+            transparent 0 1--bgl,
+            var(--r2) 2--bgl 3--bgl,
+            var(--g2) 3--bgl 4--bgl,
+            var(--b2) 5--bgl 6--bgl,
+            transparent 6.5--bgl 100%
+          );
+
+        background-size: 1--bgsq 1--bgsq;
+      }
+
+      body::backdrop {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <Header slug={title} />
+    <slot />
+  </body>
 </html>
-
-<style>
-	:root {
-		/** One background square */
-		--bgsq: 1.5rem;
-		/** One background line */
-		--bgl: calc(var(--bgsq) / 32);
-
-		--logo-width: 2--bgsq;
-		--logomark-rem: 2.25;
-		--logomark-ex: calc(var(--logomark-rem) * 1ex);
-		--slash-point: calc(var(--logo-width) + 9 * var(--logomark-ex));
-		--slash-point: 8.5--bgsq;
-	}
-
-
-	body {
-		background: rgb(41 37 36);
-
-		--r: rgba(255, 0, 0, 0.071);
-		--r2: rgba(255, 000, 000, 0.08);
-		--g: rgba(034, 197, 094, 0.08);
-		--g2: rgba(034, 197, 094, 0.07);
-		--b: rgba(000, 194, 255, 0.04);
-		--b2: rgba(000, 194, 255, 0.1);
-
-		background-image: repeating-linear-gradient(90deg,
-				transparent 0 2--bgl,
-				var(--b) 2--bgl 3--bgl,
-				var(--g) 4--bgl 5--bgl,
-				transparent 5--bgl 6--bgl,
-				var(--r) 7--bgl 8--bgl,
-				transparent 8--bgl 100%),
-			repeating-linear-gradient(180deg,
-				transparent 0 1--bgl,
-				var(--r2) 2--bgl 3--bgl,
-				var(--g2) 3--bgl 4--bgl,
-				var(--b2) 5--bgl 6--bgl,
-				transparent 6.5--bgl 100%);
-
-		background-size: 1--bgsq 1--bgsq;
-
-	}
-
-	body::backdrop {
-		color: red;
-	}
-</style>

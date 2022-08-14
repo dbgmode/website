@@ -1,19 +1,20 @@
 ---
-export interface Props { slug?: string };
+export interface Props {
+  slug?: string;
+}
 const { slug } = Astro.props as Props;
 
-import LogoMark from "./Header/LogoMark.astro"
+import LogoMark from "./Header/LogoMark.astro";
 import NavButton from "./Header/NavButton.astro";
 
 import HRainbow from "./HRainbow.astro";
-
 ---
 
 <>
   <header class="flex flex-row items-center justify-items-start box-content">
     <img src="images/logo.svg" id="logo" class:list={["mr-1"]} />
     <LogoMark slug={slug} />
-    <NavButton layoutClasses={[" mr-1", "ml-auto" ]} />
+    <NavButton layoutClasses={["mr-2", "ml-auto"]} />
   </header>
   <HRainbow />
 </>
@@ -28,12 +29,18 @@ import HRainbow from "./HRainbow.astro";
   #logo {
     width: var(--logo-width);
 
-    filter: drop-shadow(1.5px 0px 2px rgba(251, 39, 12, 0.72)) drop-shadow(0.5px -0.3px 0.25px rgba(254, 178, 22, 0.69)) drop-shadow(-0.25--bgsq calc(0.25--bgsq + 1--bgl) 0.25--bgsq rgba(254, 8, 19, 0.41)) drop-shadow(-0.625--bgsq calc(0.25--bgsq - 0.5--bgl) 0.125--bgsq rgba(255, 37, 184, 0.28));
+    filter: drop-shadow(1.5px 0px 2px rgba(251, 39, 12, 0.72))
+      drop-shadow(0.5px -0.3px 0.25px rgba(254, 178, 22, 0.69))
+      drop-shadow(
+        -0.25--bgsq calc(0.25--bgsq + 1--bgl) 0.25--bgsq rgba(254, 8, 19, 0.41)
+      )
+      drop-shadow(
+        -0.625--bgsq calc(0.25--bgsq - 0.5--bgl) 0.125--bgsq rgba(255, 37, 184, 0.28)
+      );
     rotate: -8deg;
   }
 
   .slug {
-
     color: #fff;
     white-space: nowrap;
   }

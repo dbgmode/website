@@ -1,7 +1,6 @@
 ---
-export interface Props { }
-const { } = Astro.props as Props;
-
+export interface Props {}
+const {} = Astro.props as Props;
 ---
 
 <hr />
@@ -14,24 +13,26 @@ const { } = Astro.props as Props;
     border-top: none;
 
     --post-slash-step: calc((100vw - var(--slash-point)) / 9);
-    background: linear-gradient(77deg,
-        #a14bc3 0,
-        $fuchsia 1--bgsq,
-        $red 1.5--bgsq,
-        $orange 2.5--bgsq,
-        $yellow 3.75--bgsq,
-        $green 5--bgsq,
-        $aqua 6--bgsq,
-        $blue 6.75--bgsq,
-        #a14bc3 7.75--bgsq,
-        $pink var(--slash-point),
-        $purple calc(var(--slash-point) + 0.5 * var(--post-slash-step)),
-        $blue calc(var(--slash-point) + 3 * var(--post-slash-step)),
-        $aqua calc(var(--slash-point) + 4.1 * var(--post-slash-step)),
-        $green calc(var(--slash-point) + 5 * var(--post-slash-step)),
-        $yellow calc(var(--slash-point) + 6 * var(--post-slash-step)),
-        $orange calc(var(--slash-point) + 7 * var(--post-slash-step)),
-        $red calc(var(--slash-point) + 8.5 * var(--post-slash-step)),
-        $fuchsia calc(var(--slash-point) + 9 * var(--post-slash-step)));
+    background: linear-gradient(
+      77deg,
+      #a14bc3 0,
+      $fuchsia 1--bgsq,
+      $red 1.5--bgsq,
+      $orange 2.5--bgsq,
+      $yellow 3.75--bgsq,
+      $green 5--bgsq,
+      $aqua 6--bgsq,
+      $blue 6.75--bgsq,
+      #a14bc3 7.75--bgsq,
+      $pink var(--slash-point),
+      $purple calc(var(--slash-point) + 0.5 * var(--post-slash-step)),
+      $blue calc(var(--slash-point) + 3 * var(--post-slash-step)),
+      $aqua calc(var(--slash-point) + 4.1 * var(--post-slash-step)),
+      $green calc(var(--slash-point) + 5 * var(--post-slash-step)),
+      $yellow calc(var(--slash-point) + 6 * var(--post-slash-step)),
+      $orange calc(var(--slash-point) + 7 * var(--post-slash-step)),
+      $red calc(var(--slash-point) + 8.5 * var(--post-slash-step)),
+      $fuchsia calc(var(--slash-point) + 9 * var(--post-slash-step))
+    );
   }
 </style>

@@ -2,23 +2,25 @@
 
 @keyframes crt_blink {
   0% {
-    filter: drop-shadow(1px 0px 5px #444) drop-shadow(-1px 0px 2px #444) blur(0.5px) opacity(100%);
+    filter: drop-shadow(1px 0px 5px #444) drop-shadow(-1px 0px 2px #444)
+      blur(0.5px) opacity(100%);
   }
 
   5%,
   49% {
-    filter: drop-shadow(1px 0px 5px #444) drop-shadow(-1px 0px 2px #444) blur(0.6px) opacity(100%);
+    filter: drop-shadow(1px 0px 5px #444) drop-shadow(-1px 0px 2px #444)
+      blur(0.6px) opacity(100%);
   }
 
   50% {
-    filter: drop-shadow(1px 0px 5px #44444499) drop-shadow(-1px 0px 2px #44444499) blur(0.9px)
-      opacity(40%);
+    filter: drop-shadow(1px 0px 5px #44444499)
+      drop-shadow(-1px 0px 2px #44444499) blur(0.9px) opacity(40%);
     animation-timing-function: cubic-bezier(0.95, 0.05, 0.8, 0.04);
   }
 
   100% {
-    filter: drop-shadow(1px 0px 5px #44444411) drop-shadow(-1px 0px 2px #44444411) blur(1px)
-      opacity(10%);
+    filter: drop-shadow(1px 0px 5px #44444411)
+      drop-shadow(-1px 0px 2px #44444411) blur(1px) opacity(10%);
     animation-timing-function: linear;
   }
 }
