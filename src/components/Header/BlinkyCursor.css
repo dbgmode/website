@@ -1,0 +1,52 @@
+@keyframes crt_blink {
+  0% {
+    filter: drop-shadow(1px 0px 5px #444) drop-shadow(-1px 0px 2px #444) blur(0.75px) opacity(100%);
+  }
+
+  5%,
+  49% {
+    filter: drop-shadow(1px 0px 5px #444) drop-shadow(-1px 0px 2px #444) blur(0.8px) opacity(100%);
+  }
+
+  50% {
+    filter: drop-shadow(1px 0px 5px #44444499) drop-shadow(-1px 0px 2px #44444499) blur(0.9px)
+      opacity(40%);
+    animation-timing-function: cubic-bezier(0.95, 0.05, 0.8, 0.04);
+  }
+
+  100% {
+    filter: drop-shadow(1px 0px 5px #44444411) drop-shadow(-1px 0px 2px #44444411) blur(1px)
+      opacity(10%);
+    animation-timing-function: linear;
+  }
+}
+
+header h1::after {
+  border-image: linear-gradient(
+      to bottom,
+      red 0 0.25--bgsq,
+      transparent 30% 32%,
+      orange 33% 41%,
+      transparent 42% 44%,
+      yellow 45% 53%,
+      transparent 54% 56%,
+      green 57% 64%,
+      transparent 65% 67%,
+      blue 68% 77%,
+      transparent 78% 80%,
+      purple 81% 100%
+    )
+    0 100%;
+  border-image-outset: 0 3--bgl 0 0;
+
+  border-width: 0;
+  border-right-width: 2--bgl;
+
+  filter: opacity(0);
+  animation-duration: calc(1.66 * 1140ms);
+  animation-delay: calc(1.66 * 570ms);
+  animation-name: crt_blink;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+}

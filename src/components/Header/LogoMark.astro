@@ -1,0 +1,48 @@
+---
+export interface Props {
+  slug?: string
+}
+
+const { slug } = Astro.props as Props;
+
+import "./BlinkyCursor.css"
+---
+
+<h1 data-lastchar={slug? slug.slice(-1) : "/" }>dbgmo<span class="text-2xl font-bold">.</span>de/{slug && <span
+    class="slug">{slug}</span>}</h1>
+
+<style>
+  .slug {
+    color: white;
+    -webkit-text-fill-color: white;
+  }
+
+
+  h1 {
+    background: linear-gradient(84deg,
+        fuchsia 0.125--bgsq,
+        red 0.3--bgsq,
+        orange 1--bgsq,
+        yellow 1.75--bgsq,
+        green 2.4--bgsq,
+        aqua 3.25--bgsq,
+        blue 4.5--bgsq,
+        purple 6--bgsq,
+        fuchsia 7.25--bgsq);
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    text-align: right;
+    position: relative;
+  }
+
+  h1::after {
+    content: attr(data-lastchar);
+    bottom: 0;
+    position: absolute;
+    transform: translate(-100%, 0);
+    line-height: normal;
+  }
+</style>
