@@ -1,6 +1,6 @@
 ---
 export interface Props {
-	title: string;
+	title?: string;
 }
 
 const { title } = Astro.props as Props;
@@ -36,6 +36,7 @@ import Header from "../components/Header.astro"
 		--logomark-rem: 2.25;
 		--logomark-ex: calc(var(--logomark-rem) * 1ex);
 		--slash-point: calc(var(--logo-width) + 9 * var(--logomark-ex));
+		--slash-point: 8.5--bgsq;
 	}
 
 
@@ -64,5 +65,10 @@ import Header from "../components/Header.astro"
 				transparent 6.5--bgl 100%);
 
 		background-size: 1--bgsq 1--bgsq;
+
+	}
+
+	body::backdrop {
+		color: red;
 	}
 </style>

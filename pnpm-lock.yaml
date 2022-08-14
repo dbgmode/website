@@ -6,6 +6,7 @@ specifiers:
   '@csstools/custom-units': ^0.1.1
   astro: ^1.0.1
   cmdk: ^0.1.18
+  postcss-advanced-variables: ^3.0.1
   postcss-calc: ^8.2.4
   postcss-cli: ^10.0.0
   postcss-color-hexa: ^1.2.4
@@ -23,6 +24,7 @@ devDependencies:
   '@astrojs/tailwind': 1.0.0
   '@csstools/custom-units': 0.1.1
   astro: 1.0.2
+  postcss-advanced-variables: 3.0.1
   postcss-calc: 8.2.4
   postcss-color-hexa: 1.2.4
   postcss-color-palette: 0.1.0
@@ -508,6 +510,11 @@ packages:
     engines: {node: ^12 || ^14 || >=16}
     peerDependencies:
       postcss: ^8.2
+    dev: true
+
+  /@csstools/sass-import-resolve/1.0.0:
+    resolution: {integrity: sha512-pH4KCsbtBLLe7eqUrw8brcuFO8IZlN36JjdKlOublibVdAIPHCzEnpBWOVUXK5sCf+DpBi8ZtuWtjF0srybdeA==}
+    engines: {node: '>=4.0.0'}
     dev: true
 
   /@csstools/selector-specificity/2.0.2_ktd6zevxe5zrlaqdpuavlaytw4:
@@ -3009,6 +3016,14 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       find-up: 4.1.0
+    dev: true
+
+  /postcss-advanced-variables/3.0.1:
+    resolution: {integrity: sha512-JqVjfkmqPoazMobVeQYzbt7djcDGJfMlpwBd9abTqmzWR40tvIUMXpTU5w3riqz7h+wYPY7V6GF8BIXL/ybEfg==}
+    engines: {node: '>=6.0.0'}
+    dependencies:
+      '@csstools/sass-import-resolve': 1.0.0
+      postcss: 7.0.39
     dev: true
 
   /postcss-attribute-case-insensitive/5.0.2:
