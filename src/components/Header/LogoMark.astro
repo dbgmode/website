@@ -3,45 +3,65 @@ export interface Props {
   slug?: string;
 }
 
-const { slug } = Astro.props as Props;
+const {slug} = Astro.props as Props;
 
-import "./BlinkyCursor.css";
+import './BlinkyCursor.css';
 ---
 
-<h1 data-lastchar={slug ? slug.slice(-1) : "/"}>
-  dbgmo<span class="text-2xl font-bold">.</span>de/{
-    slug && <span class="slug">{slug}</span>
+<h1 data-lastchar={slug ? slug.slice(-1) : '/'}>
+  <span class='logomark'>dbgmo<span class='dot'>.</span>de/</span>{
+    slug && <span class='slug'>{slug}</span>
   }
 </h1>
 
-<style>
-  @import "../../colors.scss";
+<style is:global>
+  @import '../../colors.scss';
 
-  .slug {
-    color: white;
-    -webkit-text-fill-color: white;
-  }
-
-  h1 {
+  .logomark {
     background: linear-gradient(
       84deg,
-      $fuchsia 0.125--bgsq,
-      $red 0.3--bgsq,
-      $orange 1--bgsq,
-      $yellow 1.75--bgsq,
-      $green 2.4--bgsq,
-      $aqua 3.25--bgsq,
-      $blue 4.5--bgsq,
-      $purple 6--bgsq,
-      $fuchsia 7.25--bgsq
+      $fuchsia calc(0.125 / 7 * 100%),
+      /* --bgsqs / 7--bgsq to allow sizing down */ $red calc(0.3 / 7 * 100%),
+      $orange calc(1 / 7 * 100%),
+      $yellow calc(1.75 / 7 * 100%),
+      $green calc(2.4 / 7 * 100%),
+      $aqua calc(3.25 / 7 * 100%),
+      $blue calc(4.5 / 7 * 100%),
+      $purple calc(6 / 7 * 100%),
+      $fuchsia calc(7.25 / 7 * 100%)
     );
 
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      'Liberation Mono', 'Courier New', monospace;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
 
-    text-align: right;
+  .logomark .dot {
+    font-family: Courier, monospace;
+    font-size: 60%;
+  }
+</style>
+
+<style>
+  .slug {
+    color: white;
+    -webkit-text-fill-color: white;
+    margin-left: -4pt;
+    margin-right: 1pt;
+    font-weight: 300;
+  }
+
+  h1 {
     position: relative;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: right;
+    line-height: 1.1;
+    font-size: inherit;
+    font-weight: inherit;
   }
 
   h1::after {

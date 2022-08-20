@@ -11,10 +11,10 @@ import HRainbow from "./HRainbow.astro";
 ---
 
 <>
-  <header class="flex flex-row items-center justify-items-start box-content">
-    <img src="images/logo.svg" id="logo" class:list={["mr-1"]} />
+  <header>
+    <img src="images/logo.svg" id="logo" />
     <LogoMark slug={slug} />
-    <NavButton layoutClasses={["mr-2", "ml-auto"]} />
+    <NavButton onclick="document.getElementById('menu').hidden = false;"/>
   </header>
   <HRainbow />
 </>
@@ -24,6 +24,12 @@ import HRainbow from "./HRainbow.astro";
     height: calc(2--bgsq + 1--bgl);
     font-size: calc(var(--logomark-rem) * 1rem);
     line-height: 1;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: start;
+    box-sizing: content-box;
   }
 
   #logo {
@@ -38,10 +44,14 @@ import HRainbow from "./HRainbow.astro";
         -0.625--bgsq calc(0.25--bgsq - 0.5--bgl) 0.125--bgsq rgba(255, 37, 184, 0.28)
       );
     rotate: -8deg;
+
+    margin-right: 0.25rem;
   }
 
   .slug {
     color: #fff;
     white-space: nowrap;
   }
+
+
 </style>

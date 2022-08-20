@@ -1,8 +1,5 @@
 ---
-export interface Props {
-  layoutClasses: Array<string>;
-}
-const { layoutClasses = [] } = Astro.props as Props;
+let {onclick = null} = Astro.props;
 ---
 
 <svg
@@ -10,7 +7,7 @@ const { layoutClasses = [] } = Astro.props as Props;
   fill="none"
   viewBox="0 0 24 24"
   stroke-width="2"
-  class:list={layoutClasses}
+  onclick={onclick}
 >
   <defs>
     <linearGradient id="proy" x1="0%" y1="0%" x2="100%" y2="7%">
@@ -58,5 +55,7 @@ const { layoutClasses = [] } = Astro.props as Props;
     padding-top: calc(0.25--bgsq - 3--bgl);
     height: 1--bgsq;
     filter: drop-shadow(0.5px 0.5px 0.5px #666);
+    margin-right: 0.5rem;
+    margin-left: auto;
   }
 </style>
