@@ -18,7 +18,10 @@ import NavButton from './Header/NavButton.astro';
 </>
 
 <style>
-  @mixin hrainbow 1--bgsq, 6.3 * 2.25rem, 100vw;  $logo-width: 2.1--bgsq;
+  $font-size: 2.25rem;
+  $logo-width: 2.1--bgsq;
+
+  @mixin hrainbow 1--bgsq, 6.3 * $font-size, 100vw;
 
   header {
     display: flex;
@@ -29,7 +32,7 @@ import NavButton from './Header/NavButton.astro';
     box-sizing: content-box;
     height: calc(2--bgsq + 1--bgl);
 
-    font-size: calc(var(--logomark-rem) * 1rem);
+    font-size: $font-size;
     line-height: 1;
   }
 
@@ -43,7 +46,8 @@ import NavButton from './Header/NavButton.astro';
         -0.25--bgsq calc(0.25--bgsq + 1--bgl) 0.25--bgsq rgb(254 8 19 / 41%)
       )
       drop-shadow(
-        -0.625--bgsq calc(0.25--bgsq - 0.5--bgl) 0.125--bgsq rgb(255 37 184 / 28%)
+        -0.625--bgsq calc(0.25--bgsq - 0.5--bgl) 0.125--bgsq rgb(255 37 184 /
+              28%)
       );
 
     rotate: -8deg;

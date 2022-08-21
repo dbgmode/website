@@ -4,5 +4,4 @@
 
   /** One background line */
   --bgl: calc(var(--bgsq) / 32);
-  --logomark-rem: 2.25;
 }
