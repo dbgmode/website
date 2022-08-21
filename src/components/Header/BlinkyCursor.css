@@ -1,24 +1,26 @@
-@keyframes crt_blink {
+@keyframes crt-blink {
   0% {
-    filter: drop-shadow(1px 0px 5px #444) drop-shadow(-1px 0px 2px #444)
-      blur(0.5px) opacity(100%);
+    filter: drop-shadow(1px 0 5px #444) drop-shadow(-1px 0 2px #444) blur(0.5px)
+      opacity(100%);
   }
 
   5%,
   49% {
-    filter: drop-shadow(1px 0px 5px #444) drop-shadow(-1px 0px 2px #444)
-      blur(0.6px) opacity(100%);
+    filter: drop-shadow(1px 0 5px #444) drop-shadow(-1px 0 2px #444) blur(0.6px)
+      opacity(100%);
   }
 
   50% {
-    filter: drop-shadow(1px 0px 5px #44444499)
-      drop-shadow(-1px 0px 2px #44444499) blur(0.9px) opacity(40%);
+    filter: drop-shadow(1px 0 5px #4449) drop-shadow(-1px 0 2px #4449)
+      blur(0.9px) opacity(40%);
+
     animation-timing-function: cubic-bezier(0.95, 0.05, 0.8, 0.04);
   }
 
   100% {
-    filter: drop-shadow(1px 0px 5px #44444411)
-      drop-shadow(-1px 0px 2px #44444411) blur(1px) opacity(10%);
+    filter: drop-shadow(1px 0 5px #4441) drop-shadow(-1px 0 2px #4441) blur(1px)
+      opacity(10%);
+
     animation-timing-function: linear;
   }
 }
@@ -42,17 +44,17 @@ header h1::after {
       )
       0 100%;
   }
-  border-image-outset: 0 3--bgl 0 0;
 
+  filter: opacity(0);
   border-style: solid;
   border-width: 0;
   border-right-width: 2--bgl;
+  border-image-outset: 0 3--bgl 0 0;
 
-  filter: opacity(0);
+  animation-name: crt-blink;
   animation-duration: calc(1.66 * 1140ms);
-  animation-delay: calc(1.66 * 570ms);
-  animation-name: crt_blink;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
+  animation-delay: calc(1.66 * 570ms);
   animation-iteration-count: infinite;
 }

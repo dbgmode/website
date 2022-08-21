@@ -33,9 +33,10 @@ import './BlinkyCursor.css';
 
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
       'Liberation Mono', 'Courier New', monospace;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+
     background-clip: text;
+
+    -webkit-text-fill-color: transparent;
   }
 
   .logomark .dot {
@@ -46,29 +47,35 @@ import './BlinkyCursor.css';
 
 <style>
   .slug {
-    color: white;
-    -webkit-text-fill-color: white;
-    margin-left: -4pt;
     margin-right: 1pt;
+    margin-left: -4pt;
+
     font-weight: 300;
+    color: white;
+
+    -webkit-text-fill-color: white;
   }
 
   h1 {
     position: relative;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-align: right;
-    line-height: 1.1;
+
     font-size: inherit;
     font-weight: inherit;
+    line-height: 1.1;
+    text-align: right;
+
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
   }
 
   h1::after {
     content: attr(data-lastchar);
-    bottom: 0;
+
     position: absolute;
+    bottom: 0;
     transform: translate(-100%, 0);
+
     line-height: normal;
   }
 </style>

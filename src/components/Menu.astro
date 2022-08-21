@@ -10,132 +10,160 @@ const {hidden = true} = Astro.props as Props;
 <Menu hidden={hidden} id='menu' />
 
 <style is:global>
-  $menu-width: 28ex; /*comes in just under 360px, like an old android phone*/
+  $menu-width: 28ex; /* comes in just under 360px, like an old android phone */
   $menu-width: 30ex;
+  $font-size: calc(100vw / 16);
 
   [cmdk-root] {
-    translate: 0 calc(-2--bgsq + -4--bgl);
-    $font-size: calc(100vw / 16);
-    font-size: $font-size;
+    @mixin hrainbow 1ch, 4.2 * $font-size, 105vw {
+      filter: brightness(0.65);
+    }
+
+    will-change: height;
+
+    overflow: hidden;
 
     width: 100vw;
-    overflow: hidden;
+
+    font-size: $font-size;
 
     border-radius: 12px;
 
+    animation: slide-down 1s 1;
+
+    translate: 0 calc(-2--bgsq + -4--bgl);
+
     & > * {
       backdrop-filter: blur(2px);
-      /* background-color: rgb(41 37 36 / 40%); */
-    }
 
-    @mixin hrainbow 1px, 4.1 * $font-size, 105vw {
-      filter: brightness(0.65);
+      /* background-color: rgb(41 37 36 / 40%); */
     }
 
     @keyframes slide-down {
       from {
         height: calc(2--bgsq + 3--bgl);
       }
+
       to {
         height: 393px;
       }
     }
-    animation: slide-down 1s 1;
-    will-change: height;
   }
 
   [cmdk-header] {
+    will-change: backdrop-filter, blur;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+
+    position: relative;
+
+    overflow-x: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: safe left;
+
+    width: 100%;
     height: calc(2--bgsq + 3--bgl);
 
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
       'Liberation Mono', 'Courier New', monospace;
-    overflow-x: scroll;
-    scrollbar-width: none;
-    width: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: safe left;
-    position: relative;
-
-    backdrop-filter: blur(11px);
     background-color: transparent;
+    backdrop-filter: blur(11px);
+
+    animation: blur-in 0.5s 1;
+
     @keyframes blur-in {
       from {
-        backdrop-filter: blur(0px);
+        backdrop-filter: blur(0);
       }
+
       to {
         backdrop-filter: blur(11px);
       }
     }
-    will-change: backdrop-filter, blur;
-    animation: blur-in 0.5s 1;
-    scroll-snap-type: x proximity;
-    scroll-behavior: smooth;
   }
 
   [cmdk-input] {
-    font-family: inherit;
-    font-size: inherit;
-    border: none;
-    color: white;
     z-index: 2;
+
+    order: 2;
+
     padding: 0;
 
-    outline: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: white;
+    text-align: left;
+
     background: transparent;
+    border: none;
+    outline: none;
 
     &::placeholder {
       font-size: 0.5em;
-      color: rgba(200, 200, 200);
+      color: rgb(200 200 200);
     }
 
     &:placeholder-shown {
       @keyframes deblur {
         0%,
-        60% {
+        59% {
           visibility: hidden;
         }
+
         60% {
           display: inline-block;
+
           filter: blur(11px);
         }
-        to {
-          filter: blur(0px);
+
+        100% {
+          filter: blur(0);
         }
       }
+
       will-change: filter, blur;
+
       animation: deblur 1s linear 1;
     }
 
-    text-align: left;
-    order: 2;
     & + .logomark {
-      order: 1;
+      will-change: transform, translatex;
+
+      z-index: 1;
+
       display: inline-block;
+      order: 1;
+
+      line-height: 1.2;
       letter-spacing: -0.08ch;
 
+      animation: slide-in 0.5s 1;
+
       .dot {
-        letter-spacing: -0.5ex;
         margin-left: -0.2ex;
+
+        letter-spacing: -0.5ex;
       }
-      line-height: 1.2;
+
       @keyframes slide-in {
         from {
           transform: translateX(-100%);
         }
+
         to {
           translate: translateX(0);
         }
       }
-      animation: slide-in 0.5s 1;
-      will-change: transform, translateX;
-      z-index: 1;
     }
 
     &:valid {
-      width: 100vw;
       flex-shrink: 0;
+
+      width: 100vw;
+
       & + .logomark {
         scroll-snap-align: unset;
       }
@@ -143,18 +171,16 @@ const {hidden = true} = Astro.props as Props;
 
     &:placeholder-shown,
     &:invalid {
-      width: 21ex;
       scroll-snap-align: unset;
+
+      width: 21ex;
+
       & + .logomark {
         scroll-snap-align: start;
       }
     }
 
     &:focus {
-      &::placeholder {
-        opacity: 0;
-      }
-
       @mixin colors {
         caret-color: $red;
 
@@ -162,24 +188,31 @@ const {hidden = true} = Astro.props as Props;
           0% {
             caret-color: $orange;
           }
+
           14.4% {
             caret-color: $yellow;
           }
+
           28.7% {
             caret-color: $green;
           }
+
           42.8% {
             caret-color: $aqua;
           }
+
           55.1% {
             caret-color: $blue;
           }
+
           71.4% {
             caret-color: $purple;
           }
+
           78.4% {
             caret-color: #a14bc3;
           }
+
           85.7% {
             caret-color: $fuchsia;
           }
@@ -187,22 +220,30 @@ const {hidden = true} = Astro.props as Props;
       }
 
       will-change: caret-color;
+
       animation: 7s linear infinite blink-rainbow;
       animation-delay: 500ms;
+
+      &::placeholder {
+        opacity: 0;
+      }
     }
   }
 
   [cmdk-root] kbd {
-    font-family: var(--font-sans);
-    background: var(--gray3);
-    color: var(--gray11);
-    height: 20px;
-    width: 20px;
-    border-radius: 4px;
-    padding: 0 4px;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    width: 20px;
+    height: 20px;
+    padding: 0 4px;
+
+    font-family: var(--font-sans);
+    color: var(--gray11);
+
+    background: var(--gray3);
+    border-radius: 4px;
   }
 
   [cmdk-root] kbd:first-of-type {
@@ -210,43 +251,52 @@ const {hidden = true} = Astro.props as Props;
   }
 
   [cmdk-list] {
-    padding: 0 8px;
-    height: 393px;
     overflow: auto;
     overscroll-behavior: contain;
+
+    height: 393px;
+    padding: 0 8px;
     padding-bottom: 40px;
   }
 
   [cmdk-item] {
-    content-visibility: auto;
-    cursor: pointer;
-    height: 40px;
-    border-radius: 8px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0 8px;
-    color: var(--gray12);
-    user-select: none;
     will-change: background, color;
+    cursor: pointer;
+    user-select: none;
+    content-visibility: auto;
+
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    height: 40px;
+    padding: 0 8px;
+
+    font-size: 14px;
+    color: var(--gray12);
+
+    border-radius: 8px;
+
     transition: all 150ms ease;
     transition-property: none;
   }
 
   [cmdk-item][aria-selected='true'] {
-    background: var(--gray4);
     color: var(--gray12);
+
+    background: var(--gray4);
   }
 
   [cmdk-item][aria-disabled='true'] {
-    color: var(--gray8);
     cursor: not-allowed;
+
+    color: var(--gray8);
   }
 
   [cmdk-item]:active {
-    transition-property: background;
     background: var(--gray4);
+
+    transition-property: background;
   }
 
   [cmdk-item]:first-child {
@@ -259,15 +309,16 @@ const {hidden = true} = Astro.props as Props;
 
   [cmdk-raycast-meta] {
     margin-left: auto;
-    color: var(--gray11);
+
     font-size: 13px;
+    color: var(--gray11);
   }
 
   [cmdk-separator] {
     height: 1px;
+    margin: 4px 0;
 
     background: var(--gray5);
-    margin: 4px 0;
   }
 
   *:not([hidden]) + [cmdk-group] {
@@ -276,18 +327,21 @@ const {hidden = true} = Astro.props as Props;
 
   [cmdk-group-heading] {
     user-select: none;
-    font-size: 12px;
-    color: var(--gray11);
-    padding: 0 8px;
+
     display: flex;
     align-items: center;
+
+    padding: 0 8px;
+
+    font-size: 12px;
+    color: var(--gray11);
   }
 
   [cmdk-dialog] {
-    z-index: var(--layer-portal);
     position: fixed;
-    left: 50%;
+    z-index: var(--layer-portal);
     top: var(--page-top);
+    left: 50%;
     transform: translateX(-50%);
   }
 
@@ -296,12 +350,14 @@ const {hidden = true} = Astro.props as Props;
   }
 
   [cmdk-empty] {
-    font-size: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
+
     height: 64px;
-    white-space: pre-wrap;
+
+    font-size: 14px;
     color: var(--gray11);
+    white-space: pre-wrap;
   }
 </style>

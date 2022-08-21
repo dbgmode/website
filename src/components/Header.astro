@@ -18,40 +18,39 @@ import NavButton from './Header/NavButton.astro';
 </>
 
 <style>
-  $logo-width: 2.1--bgsq;
+  @mixin hrainbow 1--bgsq, 6.3 * 2.25rem, 100vw;  $logo-width: 2.1--bgsq;
 
   header {
-    height: calc(2--bgsq + 1--bgl);
-    font-size: calc(var(--logomark-rem) * 1rem);
-    line-height: 1;
-
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-items: start;
+
     box-sizing: content-box;
+    height: calc(2--bgsq + 1--bgl);
+
+    font-size: calc(var(--logomark-rem) * 1rem);
+    line-height: 1;
   }
 
   #logo {
     width: $logo-width;
+    margin-right: 0.25rem;
 
-    filter: drop-shadow(1.5px 0px 2px rgba(251, 39, 12, 0.72))
-      drop-shadow(0.5px -0.3px 0.25px rgba(254, 178, 22, 0.69))
+    filter: drop-shadow(1.5px 0 2px rgb(251 39 12 / 72%))
+      drop-shadow(0.5px -0.3px 0.25px rgb(254 178 22 / 69%))
       drop-shadow(
-        -0.25--bgsq calc(0.25--bgsq + 1--bgl) 0.25--bgsq rgba(254, 8, 19, 0.41)
+        -0.25--bgsq calc(0.25--bgsq + 1--bgl) 0.25--bgsq rgb(254 8 19 / 41%)
       )
       drop-shadow(
-        -0.625--bgsq calc(0.25--bgsq - 0.5--bgl) 0.125--bgsq rgba(255, 37, 184, 0.28)
+        -0.625--bgsq calc(0.25--bgsq - 0.5--bgl) 0.125--bgsq rgb(255 37 184 / 28%)
       );
-    rotate: -8deg;
 
-    margin-right: 0.25rem;
+    rotate: -8deg;
   }
 
   .slug {
     color: #fff;
     white-space: nowrap;
   }
-
-  @mixin hrainbow 1--bgsq, 6.4 * 2.25rem, 100vw;
 </style>
