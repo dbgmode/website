@@ -1,59 +1,67 @@
 const parseValue = require('postcss-value-parser');
 const matchCustomNumber = /^[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?(?=--)/;
 
-module.exports = {
-  plugins: [
-    require('postcss-advanced-variables'),
-    require('postcss-nested'),
-    {
-      postcssPlugin: 'postcss-custom-units',
-      Declaration(declaration) {
-        const declarationValue = declaration.value;
+module.exports = (_ctx) => {
+  const is_dev = require('process').argv[-1] === 'dev';
 
-        if (!declarationValue.includes('--')) return;
+  return {
+    plugins: [
+      require('postcss-mixins')({
+        mixinsFiles: require('path').join(__dirname, 'src', 'colors.css'),
+      }),
+      require('postcss-simple-vars'),
+      require('postcss-nested'),
+      {
+        postcssPlugin: 'postcss-custom-units',
+        Declaration(declaration) {
+          const declarationValue = declaration.value;
 
-        const declarationAST = parseValue(declarationValue);
+          if (!declarationValue.includes('--')) return;
 
-        declarationAST.walk((node) => {
-          if (node.type !== 'word') return;
+          const declarationAST = parseValue(declarationValue);
 
-          const value = (node.value.match(matchCustomNumber) || [])[0];
+          declarationAST.walk((node) => {
+            if (node.type !== 'word') return;
 
-          if (!value) return;
+            const value = (node.value.match(matchCustomNumber) || [])[0];
 
-          const unit = node.value.slice(value.length);
+            if (!value) return;
 
-          Object.assign(node, {
-            type: 'function',
-            value: 'calc',
-            nodes: [
-              {type: 'word', value},
-              {type: 'space', value: ' '},
-              {type: 'word', value: '*'},
-              {type: 'space', value: ' '},
-              {
-                type: 'function',
-                value: 'var',
-                nodes: [{type: 'word', value: unit}],
-              },
-            ],
+            const unit = node.value.slice(value.length);
+
+            Object.assign(node, {
+              type: 'function',
+              value: 'calc',
+              nodes: [
+                {type: 'word', value},
+                {type: 'space', value: ' '},
+                {type: 'word', value: '*'},
+                {type: 'space', value: ' '},
+                {
+                  type: 'function',
+                  value: 'var',
+                  nodes: [{type: 'word', value: unit}],
+                },
+              ],
+            });
           });
-        });
 
-        const modifiedValue = declarationAST.toString();
+          const modifiedValue = declarationAST.toString();
 
-        if (declarationValue !== modifiedValue) {
-          declaration.value = modifiedValue;
-        }
+          if (declarationValue !== modifiedValue) {
+            declaration.value = modifiedValue;
+          }
+        },
       },
-    },
-    // for de-var-ed build
-    // require('postcss-custom-properties')({
-    //   preserve: false,
-    //   importFrom: 'src/root.css',
-    // }),
-    // require('@csstools/postcss-nested-calc')({preserve: false}),
-    // require('postcss-calc')({preserve: false}),
-    require('autoprefixer'),
-  ],
+      // for de-var-ed build
+      require('postcss-custom-properties')({
+        preserve: is_dev,
+        importFrom: 'src/root.css',
+        disableDeprecationNotice: true,
+      }),
+      require('@csstools/postcss-nested-calc')({preserve: is_dev}),
+      require('postcss-calc')({preserve: is_dev}),
+      require('autoprefixer'),
+    ],
+  };
 };

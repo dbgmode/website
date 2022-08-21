@@ -3,12 +3,16 @@ import {Command} from 'cmdk';
 const Menu = ({hidden, id}) => (
   <Command label='Navigation Menu' hidden={true} id={'menu'}>
     <div cmdk-header=''>
-      <span className='logomark'>
+      <Command.Input
+        placeholder='type here or select below'
+        minLength={20}
+        tabIndex={1}
+      />
+      <span className='logomark' tabIndex={-1} hidden={true}>
         dbgmo<span className='dot'>.</span>de/
       </span>
-      <Command.Input placeholder='type here or select below' autoFocus={true} />
     </div>
-    <hr className='ainbow' style={{filter: 'brightness(0.65)'}} />
+    <hr />
     <Command.List>
       <Command.Empty>No results found.</Command.Empty>
 

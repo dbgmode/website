@@ -15,21 +15,21 @@ import './BlinkyCursor.css';
 </h1>
 
 <style is:global>
-  @import '../../colors.scss';
-
   .logomark {
-    background: linear-gradient(
-      84deg,
-      $fuchsia calc(0.125 / 7 * 100%),
-      /* --bgsqs / 7--bgsq to allow sizing down */ $red calc(0.3 / 7 * 100%),
-      $orange calc(1 / 7 * 100%),
-      $yellow calc(1.75 / 7 * 100%),
-      $green calc(2.4 / 7 * 100%),
-      $aqua calc(3.25 / 7 * 100%),
-      $blue calc(4.5 / 7 * 100%),
-      $purple calc(6 / 7 * 100%),
-      $fuchsia calc(7.25 / 7 * 100%)
-    );
+    @mixin colors {
+      background: linear-gradient(
+        84deg,
+        $fuchsia calc(0.125 / 7 * 100%),
+        /* --bgsqs / 7--bgsq to allow sizing down */ $red calc(0.3 / 7 * 100%),
+        $orange calc(1 / 7 * 100%),
+        $yellow calc(1.75 / 7 * 100%),
+        $green calc(2.4 / 7 * 100%),
+        $aqua calc(3.25 / 7 * 100%),
+        $blue calc(4.5 / 7 * 100%),
+        $purple calc(6 / 7 * 100%),
+        $fuchsia calc(7.25 / 7 * 100%)
+      );
+    }
 
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
       'Liberation Mono', 'Courier New', monospace;

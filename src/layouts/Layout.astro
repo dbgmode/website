@@ -6,6 +6,8 @@ export interface Props {
 const {title} = Astro.props as Props;
 
 import Header from '../components/Header.astro';
+import '../root.css';
+import '../colors.css?raw';
 ---
 
 <!DOCTYPE html>
@@ -38,34 +40,41 @@ import Header from '../components/Header.astro';
         margin: 0;
         line-height: inherit;
       }
+
+      hr {
+        margin: 0;
+        border: 0;
+        height: 2.5--bgl;
+        box-sizing: content-box;
+      }
     </style>
 
     <style>
       body {
         background: rgb(41 37 36);
 
-        --r: rgba(255, 0, 0, 0.071);
-        --r2: rgba(255, 000, 000, 0.08);
-        --g: rgba(034, 197, 094, 0.08);
-        --g2: rgba(034, 197, 094, 0.07);
-        --b: rgba(000, 194, 255, 0.04);
-        --b2: rgba(000, 194, 255, 0.1);
+        $r: rgba(255, 0, 0, 0.071);
+        $r2: rgba(255, 000, 000, 0.08);
+        $g: rgba(034, 197, 094, 0.08);
+        $g2: rgba(034, 197, 094, 0.07);
+        $b: rgba(000, 194, 255, 0.04);
+        $b2: rgba(000, 194, 255, 0.1);
 
         background-image: repeating-linear-gradient(
             90deg,
             transparent 0 2--bgl,
-            var(--b) 2--bgl 3--bgl,
-            var(--g) 4--bgl 5--bgl,
+            $b 2--bgl 3--bgl,
+            $g 4--bgl 5--bgl,
             transparent 5--bgl 6--bgl,
-            var(--r) 7--bgl 8--bgl,
+            $r 7--bgl 8--bgl,
             transparent 8--bgl 100%
           ),
           repeating-linear-gradient(
             180deg,
             transparent 0 1--bgl,
-            var(--r2) 2--bgl 3--bgl,
-            var(--g2) 3--bgl 4--bgl,
-            var(--b2) 5--bgl 6--bgl,
+            $r2 2--bgl 3--bgl,
+            $g2 3--bgl 4--bgl,
+            $b2 5--bgl 6--bgl,
             transparent 6.5--bgl 100%
           );
 

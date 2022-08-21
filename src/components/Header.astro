@@ -2,24 +2,24 @@
 export interface Props {
   slug?: string;
 }
-const { slug } = Astro.props as Props;
+const {slug} = Astro.props as Props;
 
-import LogoMark from "./Header/LogoMark.astro";
-import NavButton from "./Header/NavButton.astro";
-
-import HRainbow from "./HRainbow.astro";
+import LogoMark from './Header/LogoMark.astro';
+import NavButton from './Header/NavButton.astro';
 ---
 
 <>
   <header>
-    <img src="images/logo.svg" id="logo" />
+    <img src='images/logo.svg' id='logo' />
     <LogoMark slug={slug} />
-    <NavButton onclick="document.getElementById('menu').hidden = false;"/>
+    <NavButton onclick={'document.getElementById("menu").hidden = false'} />
   </header>
-  <HRainbow />
+  <hr />
 </>
 
 <style>
+  $logo-width: 2.1--bgsq;
+
   header {
     height: calc(2--bgsq + 1--bgl);
     font-size: calc(var(--logomark-rem) * 1rem);
@@ -33,7 +33,7 @@ import HRainbow from "./HRainbow.astro";
   }
 
   #logo {
-    width: var(--logo-width);
+    width: $logo-width;
 
     filter: drop-shadow(1.5px 0px 2px rgba(251, 39, 12, 0.72))
       drop-shadow(0.5px -0.3px 0.25px rgba(254, 178, 22, 0.69))
@@ -53,5 +53,5 @@ import HRainbow from "./HRainbow.astro";
     white-space: nowrap;
   }
 
-
+  @mixin hrainbow 1--bgsq, 6.4 * 2.25rem, 100vw;
 </style>

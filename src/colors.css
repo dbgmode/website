@@ -1,0 +1,54 @@
+@define-mixin colors {
+  $fuchsia: #fe24b7;
+  $red: #f80513;
+  $orange: #fe5700;
+  $yellow: #fdcd1c;
+  $green: #21dd16;
+  $aqua: #14f4fd;
+  $blue: #0f8ceb;
+  $purple: #bb40bc;
+  $purple2: #a14bc3;
+  $pink: #fe23b6;
+  @mixin-content;
+}
+
+@define-mixin hrainbow $red-point, $pink-point, $container-width: 100vw {
+  @mixin colors {
+    $hrainbow-angle: 90deg;
+
+    $hrainbow-red-to-pink-sections: 32;
+    $hrrtps: calc($pink-point / $hrainbow-red-to-pink-sections);
+    $hrrealpink: calc($pink-point - $red-point);
+
+    $hrainbow-pink-to-red-sections: 90;
+    $hrptrs: calc(
+      ($container-width - $hrrealpink) / $hrainbow-pink-to-red-sections
+    );
+
+    hr {
+      background-image: linear-gradient(
+        $hrainbow-angle,
+        $purple2 0 calc($red-point / 10),
+        $fuchsia calc($red-point * 2 / 3),
+        $red calc($red-point),
+        $orange calc(10 * $hrrtps),
+        $yellow calc(15 * $hrrtps),
+        $green calc(20 * $hrrtps),
+        $aqua calc(24 * $hrrtps),
+        $blue calc(27 * $hrrtps),
+        $purple2 calc(31 * $hrrtps),
+        $pink $hrrealpink,
+        $purple calc($hrrealpink + 5 * $hrptrs),
+        $blue calc($hrrealpink + 30 * $hrptrs),
+        $aqua calc($hrrealpink + 41 * $hrptrs),
+        $green calc($hrrealpink + 50 * $hrptrs),
+        $yellow calc($hrrealpink + 60 * $hrptrs),
+        $orange calc($hrrealpink + 70 * $hrptrs),
+        $red calc($hrrealpink + 85 * $hrptrs),
+        $fuchsia calc($hrrealpink + 90 * $hrptrs)
+      );
+      background-attachment: fixed;
+      @mixin-content;
+    }
+  }
+}
