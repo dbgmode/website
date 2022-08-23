@@ -12,28 +12,37 @@ import NavButton from './Header/NavButton.astro';
   <header>
     <img src='images/logo.svg' id='logo' />
     <LogoMark slug={slug} />
-    <NavButton onclick={'document.getElementById("menu").hidden = false'} />
+    <NavButton onclick={'document.body.classList.add("menu-open")'} />
   </header>
-  <hr />
 </>
 
 <style>
   $font-size: 2.25rem;
   $logo-width: 2.1--bgsq;
 
-  @mixin hrainbow 1--bgsq, 6.3 * $font-size, 100vw;
-
   header {
+    @mixin hrainbow 1--bgsq, 6.8 * $font-size, 100vw, border;
+
+    position: sticky;
+    top: 0;
+
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-items: start;
 
-    box-sizing: content-box;
-    height: calc(2--bgsq + 1--bgl);
+    height: calc(2--bgsq + 3--bgl);
 
     font-size: $font-size;
     line-height: 1;
+
+    background-color: inherit;
+    background-image: inherit;
+    background-size: inherit;
+    border-style: solid;
+    border-bottom-width: 3--bgl;
+    border-image-slice: 100% 0%;
+    border-image-outset: 0 0 2--bgl 0;
   }
 
   #logo {

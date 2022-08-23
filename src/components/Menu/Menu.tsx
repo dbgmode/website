@@ -1,12 +1,13 @@
 import {Command} from 'cmdk';
 
-const Menu = ({hidden, id}) => (
-  <Command label='Navigation Menu' hidden={true} id={'menu'}>
+const Menu = ({value}) => (
+  <Command label='Navigation Menu' id={'menu'}>
     <div cmdk-header=''>
       <Command.Input
         placeholder='type here or select below'
-        minLength={20}
+        minLength={19}
         tabIndex={1}
+        value={value}
       />
       <span className='logomark' tabIndex={-1} hidden={true}>
         dbgmo<span className='dot'>.</span>de/

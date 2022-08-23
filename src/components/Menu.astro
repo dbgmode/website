@@ -2,36 +2,37 @@
 import Menu from './Menu/Menu.js';
 
 export interface Props {
-  hidden?: boolean;
+  value?: string;
 }
-const {hidden = true} = Astro.props as Props;
+const {value = ''} = Astro.props as Props;
 ---
 
-<Menu hidden={hidden} id='menu' />
+<Menu value={value} id='menu' />
 
 <style is:global>
-  $menu-width: 28ex; /* comes in just under 360px, like an old android phone */
-  $menu-width: 30ex;
-  $font-size: calc(100vw / 16);
+  $header-width: 2--bgsq + 5--bgl;
+  $logo-width: calc(2.1--bgsq + 0.25rem);
 
-  [cmdk-root] {
-    @mixin hrainbow 1ch, 4.2 * $font-size, 105vw {
-      filter: brightness(0.65);
+  [cmdk-root] hr {
+    filter: brightness(0.65);
+
+    @media only screen and (min-width: 700px) {
+      @mixin hrainbow 1ch, 4.2em, 33ex {
+        filter: brightness(0.65);
+      }
     }
 
-    will-change: height;
+    @media only screen and (max-width: 699px) {
+      @mixin hrainbow 1ch, (29.5vw), 110vw {
+        filter: brightness(0.65);
+      }
+    }
+  }
 
+  [cmdk-root] {
     overflow: hidden;
 
-    width: 100vw;
-
-    font-size: $font-size;
-
     border-radius: 12px;
-
-    animation: slide-down 1s 1;
-
-    translate: 0 calc(-2--bgsq + -4--bgl);
 
     & > * {
       backdrop-filter: blur(2px);
@@ -39,13 +40,63 @@ const {hidden = true} = Astro.props as Props;
       /* background-color: rgb(41 37 36 / 40%); */
     }
 
-    @keyframes slide-down {
-      from {
-        height: calc(2--bgsq + 3--bgl);
+    @media only screen and (max-width: 699px) {
+      /* translate: 0 calc(-1 * $header-width); */
+      position: fixed;
+      top: 0;
+
+      width: 100vw;
+
+      font-size: calc(100vw / 16);
+
+      animation: slide-down 1s 1;
+
+      @keyframes slide-down {
+        from {
+          height: calc(2--bgsq + 3--bgl);
+        }
+
+        to {
+          height: 5em;
+        }
+      }
+    }
+
+    @media only screen and (min-width: 700px) {
+      @mixin colors {
+        border: $red 2px solid;
       }
 
-      to {
-        height: 393px;
+      position: fixed;
+      top: 20vh;
+      left: calc((100vw - 30ex) / 2);
+
+      width: 33ex;
+      height: 9em;
+      margin: 0;
+
+      font-size: 2rem;
+
+      animation: zoom-in 0.5s 1;
+
+      @keyframes zoom-in {
+        from {
+          top: 0;
+          left: $logo-width;
+
+          height: calc($header-width);
+
+          font-size: 2.25rem;
+        }
+
+        to {
+          top: 20vh;
+          left: calc((100vw - 30ex) / 2);
+
+          height: 9em;
+
+          font-size: 2rem;
+        }
       }
     }
   }
@@ -70,17 +121,20 @@ const {hidden = true} = Astro.props as Props;
       'Liberation Mono', 'Courier New', monospace;
 
     background-color: transparent;
-    backdrop-filter: blur(11px);
 
-    animation: blur-in 0.5s 1;
+    @media only screen and (max-width: 699px) {
+      backdrop-filter: blur(11px);
 
-    @keyframes blur-in {
-      from {
-        backdrop-filter: blur(0);
-      }
+      animation: blur-in 0.5s 1;
 
-      to {
-        backdrop-filter: blur(11px);
+      @keyframes blur-in {
+        from {
+          backdrop-filter: blur(0);
+        }
+
+        to {
+          backdrop-filter: blur(11px);
+        }
       }
     }
   }
@@ -106,29 +160,6 @@ const {hidden = true} = Astro.props as Props;
       color: rgb(200 200 200);
     }
 
-    &:placeholder-shown {
-      @keyframes deblur {
-        0%,
-        59% {
-          visibility: hidden;
-        }
-
-        60% {
-          display: inline-block;
-
-          filter: blur(11px);
-        }
-
-        100% {
-          filter: blur(0);
-        }
-      }
-
-      will-change: filter, blur;
-
-      animation: deblur 1s linear 1;
-    }
-
     & + .logomark {
       will-change: transform, translatex;
 
@@ -140,21 +171,23 @@ const {hidden = true} = Astro.props as Props;
       line-height: 1.2;
       letter-spacing: -0.08ch;
 
-      animation: slide-in 0.5s 1;
-
       .dot {
         margin-left: -0.2ex;
 
         letter-spacing: -0.5ex;
       }
 
-      @keyframes slide-in {
-        from {
-          transform: translateX(-100%);
-        }
+      @media only screen and (max-width: 699px) {
+        animation: slide-in 0.5s 1;
 
-        to {
-          translate: translateX(0);
+        @keyframes slide-in {
+          from {
+            transform: translateX(-100%);
+          }
+
+          to {
+            translate: translateX(0);
+          }
         }
       }
     }
@@ -228,6 +261,31 @@ const {hidden = true} = Astro.props as Props;
         opacity: 0;
       }
     }
+
+    @media only screen and (max-width: 699px) {
+      &:placeholder-shown {
+        @keyframes deblur {
+          0%,
+          59% {
+            visibility: hidden;
+          }
+
+          60% {
+            display: inline-block;
+
+            filter: blur(11px);
+          }
+
+          100% {
+            filter: blur(0);
+          }
+        }
+
+        will-change: filter, blur;
+
+        animation: deblur 1s linear 1;
+      }
+    }
   }
 
   [cmdk-root] kbd {
@@ -254,7 +312,7 @@ const {hidden = true} = Astro.props as Props;
     overflow: auto;
     overscroll-behavior: contain;
 
-    height: 393px;
+    height: 5em;
     padding: 0 8px;
     padding-bottom: 40px;
   }
@@ -338,7 +396,7 @@ const {hidden = true} = Astro.props as Props;
   }
 
   [cmdk-dialog] {
-    position: fixed;
+    position: ;
     z-index: var(--layer-portal);
     top: var(--page-top);
     left: 50%;
@@ -359,5 +417,15 @@ const {hidden = true} = Astro.props as Props;
     font-size: 14px;
     color: var(--gray11);
     white-space: pre-wrap;
+  }
+
+  body:not(.menu-open) #menu {
+    display: none;
+  }
+
+  @media only screen and (min-width: 700px) {
+    body.menu-open header h1 {
+      visibility: hidden;
+    }
   }
 </style>
