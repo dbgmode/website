@@ -24,7 +24,9 @@ const Menu = ({value}) => (
         <Command.Item>c</Command.Item>
       </Command.Group>
 
-      <Command.Item>Apple</Command.Item>
+      <Command.Item>
+        Appleaaaaaaaaaaaaaaaaaaaa bbbbbbbbbbbbbb cccccccccccc dddddddddd
+      </Command.Item>
     </Command.List>
   </Command>
 );

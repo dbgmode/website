@@ -10,66 +10,60 @@ const {value = ''} = Astro.props as Props;
 <Menu value={value} id='menu' />
 
 <style is:global>
-  $header-width: 2--bgsq + 5--bgl;
+  $header-height: 2--bgsq;
   $logo-width: calc(2.1--bgsq + 0.25rem);
 
   [cmdk-root] hr {
     filter: brightness(0.65);
 
     @media only screen and (min-width: 700px) {
-      @mixin hrainbow 1ch, 4.2em, 33ex {
-        filter: brightness(0.65);
+      @mixin hrainbow 1ch, 10ex, 33ex {
+        height: 3--bgl;
+        margin-left: -1px;
+
+        box-shadow: -3px 2px 5px 2px #29252444, -1px 0 5px 2px #29252444;
       }
     }
 
     @media only screen and (max-width: 699px) {
-      @mixin hrainbow 1ch, (29.5vw), 110vw {
-        filter: brightness(0.65);
-      }
+      @mixin hrainbow 1ch, (29.5vw), 110vw;
     }
   }
 
   [cmdk-root] {
-    overflow: hidden;
-
-    border-radius: 12px;
-
-    & > * {
-      backdrop-filter: blur(2px);
-
-      /* background-color: rgb(41 37 36 / 40%); */
-    }
+    background-color: rgb(41 37 36 / 94%);
+    background-image: inherit;
+    background-attachment: fixed;
+    background-size: inherit;
 
     @media only screen and (max-width: 699px) {
-      /* translate: 0 calc(-1 * $header-width); */
       position: fixed;
       top: 0;
 
       width: 100vw;
+      margin-top: calc($header-height);
 
       font-size: calc(100vw / 16);
+
+      background-clip: content-box;
 
       animation: slide-down 1s 1;
 
       @keyframes slide-down {
         from {
-          height: calc(2--bgsq + 3--bgl);
+          height: calc($header-height);
         }
 
         to {
-          height: 5em;
+          height: 5.8em;
         }
       }
     }
 
     @media only screen and (min-width: 700px) {
-      @mixin colors {
-        border: $red 2px solid;
-      }
-
       position: fixed;
-      top: 20vh;
-      left: calc((100vw - 30ex) / 2);
+      top: max(3vh, calc(40vh - $header-height - 9.5rem));
+      left: calc((100vw - 33ex) / 2);
 
       width: 33ex;
       height: 9em;
@@ -77,37 +71,66 @@ const {value = ''} = Astro.props as Props;
 
       font-size: 2rem;
 
+      border-radius: 5px;
+      box-shadow: antiquewhite 2px 1px 7px;
+      /* stylelint-disable-next-line color-function-notation,alpha-value-notation */
+      box-shadow: rgba(250, 235, 215, 0.6) 2px 1px 7px;
+      box-shadow: 4px 5px 6px -1px rgb(0 0 215 / 40%),
+        4px 3px 6px 2px rgb(0 235 0 / 30%), 9px -6px 8px -3px rgb(250 0 0 / 30%);
+
       animation: zoom-in 0.5s 1;
 
-      @keyframes zoom-in {
-        from {
-          top: 0;
-          left: $logo-width;
+      &::before {
+        content: ' ';
 
-          height: calc($header-width);
+        position: absolute;
 
-          font-size: 2.25rem;
+        width: calc(100% - 6px);
+        height: calc(100% - 6px);
+
+        filter: blur(2px);
+        border: 3.5px solid rgb(238 146 20 / 65%);
+        border-image-slice: 1;
+        border-image-width: 3px;
+        border-image-repeat: stretch;
+
+        /* stylelint-disable-next-line at-rule-empty-line-before,order/order */
+        @mixin colors {
+          @mixin rotating-conic-gradient-border menu, 15, $fuchsia, $red,
+            $orange, $yellow, $green, $aqua, $blue, $purple2, $purple, $pink;
         }
+      }
+    }
 
-        to {
-          top: 20vh;
-          left: calc((100vw - 30ex) / 2);
+    @keyframes zoom-in {
+      from {
+        top: 0;
+        left: $logo-width;
 
-          height: 9em;
+        overflow: hidden;
 
-          font-size: 2rem;
-        }
+        height: calc($header-height);
+
+        font-size: 2.25rem;
+      }
+
+      to {
+        top: max(3vh, calc(40vh - $header-height - 9.5rem));
+        left: calc((100vw - 33ex) / 2);
+
+        overflow: visible;
+
+        height: 9em;
+
+        font-size: 2rem;
       }
     }
   }
 
   [cmdk-header] {
-    will-change: backdrop-filter, blur;
     scroll-behavior: smooth;
     scrollbar-width: none;
     scroll-snap-type: x proximity;
-
-    position: relative;
 
     overflow-x: scroll;
     display: flex;
@@ -120,10 +143,17 @@ const {value = ''} = Astro.props as Props;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
       'Liberation Mono', 'Courier New', monospace;
 
-    background-color: transparent;
+    backdrop-filter: blur(10px);
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     @media only screen and (max-width: 699px) {
-      backdrop-filter: blur(11px);
+      position: relative;
+      top: calc(-1 * $header-height);
+
+      margin-bottom: calc(-1 * $header-height);
 
       animation: blur-in 0.5s 1;
 
@@ -137,10 +167,14 @@ const {value = ''} = Astro.props as Props;
         }
       }
     }
+
+    @media only screen and (min-width: 700px) {
+      padding-left: 0.5ex;
+    }
   }
 
   [cmdk-input] {
-    z-index: 2;
+    z-index: 4;
 
     order: 2;
 
@@ -161,9 +195,7 @@ const {value = ''} = Astro.props as Props;
     }
 
     & + .logomark {
-      will-change: transform, translatex;
-
-      z-index: 1;
+      z-index: 4;
 
       display: inline-block;
       order: 1;
@@ -195,7 +227,7 @@ const {value = ''} = Astro.props as Props;
     &:valid {
       flex-shrink: 0;
 
-      width: 100vw;
+      width: 100%;
 
       & + .logomark {
         scroll-snap-align: unset;
@@ -204,8 +236,6 @@ const {value = ''} = Astro.props as Props;
 
     &:placeholder-shown,
     &:invalid {
-      scroll-snap-align: unset;
-
       width: 21ex;
 
       & + .logomark {
@@ -281,8 +311,6 @@ const {value = ''} = Astro.props as Props;
           }
         }
 
-        will-change: filter, blur;
-
         animation: deblur 1s linear 1;
       }
     }
@@ -309,16 +337,36 @@ const {value = ''} = Astro.props as Props;
   }
 
   [cmdk-list] {
-    overflow: auto;
-    overscroll-behavior: contain;
+    position: relative;
 
-    height: 5em;
-    padding: 0 8px;
-    padding-bottom: 40px;
+    height: 80%;
+    margin-right: 4px;
+    margin-left: 5px;
+
+    color: antiquewhite;
+
+    &::before {
+      content: ' ';
+
+      position: absolute;
+      z-index: 3;
+
+      width: 100%;
+      height: 100%;
+
+      backdrop-filter: saturate(150%) brightness(160%) contrast(105%);
+
+      mask: linear-gradient(
+        -270deg,
+        rgba(0 0 0 / 15%) 20%,
+        rgba(0 0 0 / 45%) 70%,
+        rgba(0 0 0 / 75%) 90%,
+        rgba(0 0 0 / 100%) 95%
+      );
+    }
   }
 
   [cmdk-item] {
-    will-change: background, color;
     cursor: pointer;
     user-select: none;
     content-visibility: auto;

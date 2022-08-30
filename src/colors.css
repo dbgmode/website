@@ -47,5 +47,6 @@
       $red calc($hrrealpink + 85 * $hrptrs),
       $fuchsia calc($hrrealpink + 90 * $hrptrs)
     );
+    @mixin-content;
   }
 }

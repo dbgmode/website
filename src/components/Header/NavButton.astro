@@ -3,54 +3,56 @@ let {onclick = null} = Astro.props;
 ---
 
 <svg
-  xmlns="http://www.w3.org/2000/svg"
-  fill="none"
-  viewBox="0 0 24 24"
-  stroke-width="2"
+  xmlns='http://www.w3.org/2000/svg'
+  fill='none'
+  viewBox='0 0 24 24'
+  stroke-width='2'
   onclick={onclick}
 >
   <defs>
-    <linearGradient id="proy" x1="0%" y1="0%" x2="100%" y2="7%">
-      <stop offset="5%" stop-color="#fe24b7"></stop>
-      <stop offset="40%" stop-color="#f80513"></stop>
-      <stop offset="66%" stop-color="#fe5700"></stop>
-      <stop offset="100%" stop-color="#fdcd1c"></stop>
+    <linearGradient id='proy' x1='0%' y1='0%' x2='100%' y2='7%'>
+      <stop offset='5%' stop-color='#fe24b7'></stop>
+      <stop offset='40%' stop-color='#f80513'></stop>
+      <stop offset='66%' stop-color='#fe5700'></stop>
+      <stop offset='100%' stop-color='#fdcd1c'></stop>
     </linearGradient>
-    <linearGradient id="ygcb" x1="100%" y1="0%" x2="0%" y2="7%">
-      <stop offset="0%" stop-color="#fdcd1c"></stop>
-      <stop offset="35%" stop-color="#21dd16"></stop>
-      <stop offset="60%" stop-color="#14f4fd"></stop>
-      <stop offset="100%" stop-color="#0f8ceb"></stop>
+    <linearGradient id='ygcb' x1='100%' y1='0%' x2='0%' y2='7%'>
+      <stop offset='0%' stop-color='#fdcd1c'></stop>
+      <stop offset='35%' stop-color='#21dd16'></stop>
+      <stop offset='60%' stop-color='#14f4fd'></stop>
+      <stop offset='100%' stop-color='#0f8ceb'></stop>
     </linearGradient>
-    <linearGradient id="bivp" x1="0%" y1="0%" x2="100%" y2="7%">
-      <stop offset="15%" stop-color="#0f8ceb"></stop>
-      <stop offset="60%" stop-color="#a14bc3"></stop>
-      <stop offset="90%" stop-color="#fe23b6"></stop>
-      <stop offset="100%" stop-color="#fe24b7"></stop>
+    <linearGradient id='bivp' x1='0%' y1='0%' x2='100%' y2='7%'>
+      <stop offset='15%' stop-color='#0f8ceb'></stop>
+      <stop offset='60%' stop-color='#a14bc3'></stop>
+      <stop offset='90%' stop-color='#fe23b6'></stop>
+      <stop offset='100%' stop-color='#fe24b7'></stop>
     </linearGradient>
   </defs>
-  <rect stroke="none" x="3" y="5" width="18" height="2" rx="1" fill="url(#proy)"
+  <rect stroke='none' x='3' y='5' width='18' height='2' rx='1' fill='url(#proy)'
   ></rect>
   <rect
-    stroke="none"
-    x="3"
-    y="11"
-    width="18"
-    height="2"
-    rx="1"
-    fill="url(#ygcb)"></rect>
+    stroke='none'
+    x='3'
+    y='11'
+    width='18'
+    height='2'
+    rx='1'
+    fill='url(#ygcb)'></rect>
   <rect
-    stroke="none"
-    x="3"
-    y="17"
-    width="18"
-    height="2"
-    rx="1"
-    fill="url(#bivp)"></rect>
+    stroke='none'
+    x='3'
+    y='17'
+    width='18'
+    height='2'
+    rx='1'
+    fill='url(#bivp)'></rect>
 </svg>
 
 <style>
   svg {
+    flex-shrink: 0;
+
     box-sizing: content-box;
     height: 1--bgsq;
     margin-right: 0.5rem;

@@ -6,6 +6,8 @@ export interface Props {
 const {title} = Astro.props as Props;
 
 import Header from '../components/Header.astro';
+import Menu from '../components/Menu.astro';
+
 import '../root.css';
 import '../colors.css?raw';
 ---
@@ -44,7 +46,7 @@ import '../colors.css?raw';
 
       hr {
         box-sizing: content-box;
-        height: 2.5--bgl;
+        height: 3--bgl;
         margin: 0;
 
         border: 0;
@@ -53,7 +55,6 @@ import '../colors.css?raw';
 
     <style>
       body {
-
         $r: rgb(255 0 0 / 7.1%);
         $r2: rgb(255 000 000 / 8%);
         $g: rgb(034 197 094 / 8%);
@@ -86,6 +87,7 @@ import '../colors.css?raw';
 
   <body>
     <Header slug={title} />
+    <Menu value={title} />
     <slot />
   </body>
 </html>
