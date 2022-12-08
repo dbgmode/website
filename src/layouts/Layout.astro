@@ -6,6 +6,7 @@ export interface Props {
 const {title} = Astro.props as Props;
 
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import Menu from '../components/Menu.astro';
 
 import '../root.css';
@@ -87,7 +88,8 @@ import '../colors.css?raw';
 
   <body>
     <Header slug={title} />
-    <Menu value={title} />
+    <!-- <Menu value={title} /> -->
     <slot />
+    <Footer />
   </body>
 </html>

@@ -5,3 +5,17 @@
   /** One background line */
   --bgl: calc(var(--bgsq) / 32);
 }
+
+main, a {
+  color: #fcaf;
+}
+
+a:visited {
+  color: rgb(187 145 117);
+}
+
+
+a:hover {
+  color: rgb(255 145 117);
+}
+
